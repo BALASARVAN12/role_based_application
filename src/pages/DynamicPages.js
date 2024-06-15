@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Dropdown, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const DynamicPages = ({ pageName }) => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -8,59 +9,58 @@ const DynamicPages = ({ pageName }) => {
 
   // Define dynamic table data for each page
   const tableDataMap = {
-    Page1: {
-      'Option 1': [
-        { id: 1, name: 'Item 1', price: '$10' },
-        { id: 2, name: 'Item 2', price: '$20' },
-        { id: 3, name: 'Item 3', price: '$30' },
+    DivisonA: {
+      'Item 1': [
+        {id: 1, "Name Of the Equipment": 'Item 1', "Make": 'Company A', "ID No.":"1234","Frequency Of Calibration":'Yes', "Date of Calibration":'27/12/2023',"Calibration Due Date":'27/12/2024' },
+
       ],
-      'Option 2': [
-        { id: 1, name: 'Product A', quantity: 5 },
-        { id: 2, name: 'Product B', quantity: 10 },
+      'Item 2': [
+        { id: 1, "Name Of the Equipment": 'Item 2', "Make": 'Company B', "ID No.":2134,"Frequency Of Calibration":'No', "Date of Calibration":'06/12/2023',"Calibration Due Date":'06/12/2024'  },
       ],
-      'Option 3': [
-        { id: 1, author: 'Author X', book: 'Book 1' },
-        { id: 2, author: 'Author Y', book: 'Book 2' },
-        { id: 3, author: 'Author Z', book: 'Book 3' },
+      'Item 3': [
+        { id: 1, "Name Of the Equipment": 'Item 3', "Make": 'Company C', "ID No.":3124,"Frequency Of Calibration":'Yes', "Date of Calibration":'13/03/2023',"Calibration Due Date":'28/09/2028'  },
       ],
-      'Option 4': [
-        { id: 1, city: 'City A', population: '100,000' },
-        { id: 2, city: 'City B', population: '200,000' },
-        { id: 3, city: 'City C', population: '300,000' },
+      'Item 4': [
+        { id: 1, "Name Of the Equipment": 'Item 4', "Make": 'Company D', "ID No.":4123,"Frequency Of Calibration":'No', "Date of Calibration":'05/01/2024',"Calibration Due Date":'31/12/2024'  },
       ],
-      'Option 5': [
-        { id: 1, fruit: 'Apple', color: 'Red' },
-        { id: 2, fruit: 'Banana', color: 'Yellow' },
-        { id: 3, fruit: 'Grape', color: 'Purple' },
+      'Item 5': [
+        { id: 1," Name Of the Equipment": 'Item 5', "Make": 'Company E'," ID No.":3241,"Frequency Of Calibration":'Yes', "Date of Calibration":'27/12/2023',"Calibration Due Date":'27/12/2024' },
       ],
     },
-    Page2: {
-      'Option A': [
-        { id: 1, name: 'Item X', price: '$15' },
-        { id: 2, name: 'Item Y', price: '$25' },
-        { id: 3, name: 'Item Z', price: '$35' },
+    DivisonB: {
+      'Item 1': [
+        {id: 1," Name Of the Equipment": 'Item 1', "Make": 'Company A', "ID No.":1234,"Frequency Of Calibration":'Yes'," Date of Calibration":'27/12/2023',"Calibration Due Date":'27/12/2024' },
       ],
-      'Option B': [
-        { id: 1, name: 'Product C', quantity: 8 },
-        { id: 2, name: 'Product D', quantity: 12 },
+      'Item 2': [
+        {id: 1, "Name Of the Equipment": 'Item 2', "Make": 'Company B', "ID No.":2134,"Frequency Of Calibration":'No', "Date of Calibration":'06/12/2023',"Calibration Due Date":'06/12/2024' },
       ],
-      'Option C': [
-        { id: 1, author: 'Author P', book: 'Book X' },
-        { id: 2, author: 'Author Q', book: 'Book Y' },
-        { id: 3, author: 'Author R', book: 'Book Z' },
+      'Item 3': [
+        {id: 1, "Name Of the Equipment": 'Item 3', "Make": 'Company C', "ID No.":3124,"Frequency Of Calibration":'Yes', "Date of Calibration":'13/03/2023',"Calibration Due Date":'28/09/2028'  },
       ],
-      'Option D': [
-        { id: 1, city: 'City X', population: '150,000' },
-        { id: 2, city: 'City Y', population: '250,000' },
-        { id: 3, city: 'City Z', population: '350,000' },
+      'Item 4': [
+        { id: 1, "Name Of the Equipment": 'Item 4', "Make": 'Company D', "ID No.":4123,"Frequency Of Calibration":'No', "Date of Calibration":'05/01/2024',"Calibration Due Date":'31/12/2024' },
       ],
-      'Option E': [
-        { id: 1, fruit: 'Orange', color: 'Orange' },
-        { id: 2, fruit: 'Watermelon', color: 'Green' },
-        { id: 3, fruit: 'Blueberry', color: 'Blue' },
+      'Item 5': [
+        { id: 1, "Name Of the Equipment": 'Item 5', "Make": 'Company E', "ID No.":3241,"Frequency Of Calibration":'Yes', "Date of Calibration":'27/12/2023',"Calibration Due Date":'27/12/2024'  },
       ],
     },
   };
+  
+  const buttonStyle_1 = {
+    position:"fixed",
+    left:"45%",
+
+
+
+  }
+  const buttonStyle = {
+    position:"fixed",
+    bottom:"20px",
+    left:"50%",
+    transform:"translateX(-50%)",
+    padding:"10px 20px",
+    borderRadius:"5px"
+  }
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -68,13 +68,14 @@ const DynamicPages = ({ pageName }) => {
 
   const handleLogout = () => {
     navigate('/');
+    toast.success('Logout successful!');
     // Additional logout logic if needed
   };
 
   return (
     <Container className="mt-5">
-      <h1>{pageName}</h1>
-      <Dropdown onSelect={handleSelect}>
+      <h1>Welcome to {pageName}</h1>
+      <Dropdown onSelect={handleSelect} style={buttonStyle_1}>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {selectedOption || 'Select an Option'}
         </Dropdown.Toggle>
@@ -86,7 +87,7 @@ const DynamicPages = ({ pageName }) => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
-
+<br/> <br/>
       {selectedOption && (
         <div className="mt-3">
           <h3>Table for {selectedOption}</h3>
@@ -110,8 +111,7 @@ const DynamicPages = ({ pageName }) => {
           </Table>
         </div>
       )}
-
-      <Button variant="danger" onClick={handleLogout} className="mt-3">Logout</Button>
+      <Button variant="danger" onClick={handleLogout} style={buttonStyle}>Logout</Button>
     </Container>
   );
 };

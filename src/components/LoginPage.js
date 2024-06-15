@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { toast } from 'react-toastify';
 
 const LoginPage = ({ setUser }) => {
   const [username, setUsername] = useState('');
@@ -32,13 +33,16 @@ const LoginPage = ({ setUser }) => {
     if (users[username] && users[username] === password) {
       setUser(username);
       setError('');
+      toast.success('Login successful!');
+      toast.info("santosh LOVE matter is on due")
       if (username === process.env.REACT_APP_USER_ONE_USERNAME) {
         navigate('/page1');
       } else if (username === process.env.REACT_APP_USER_TWO_USERNAME) {
         navigate('/page2');
       }
     } else {
-      setError('Invalid username or password');
+      
+      toast.error('Invalid username or password');
     }
   };
 
