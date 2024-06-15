@@ -34,7 +34,7 @@ const LoginPage = ({ setUser }) => {
       setUser(username);
       setError('');
       toast.success('Login successful!');
-      toast.info("santosh LOVE matter is on due")
+      
       if (username === process.env.REACT_APP_USER_ONE_USERNAME) {
         navigate('/page1');
       } else if (username === process.env.REACT_APP_USER_TWO_USERNAME) {
