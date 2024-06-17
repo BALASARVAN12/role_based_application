@@ -28,8 +28,7 @@ const LoginPage = ({ setUser }) => {
   const handleLogin = () => {
     const users = {
       [process.env.REACT_APP_USER_ONE_USERNAME]: process.env.REACT_APP_USER_ONE_PASSWORD,
-      [process.env.REACT_APP_USER_TWO_USERNAME]: process.env.REACT_APP_USER_TWO_PASSWORD,
-      [process.env.REACT_APP_USER_THREE_USERNAME]:process.env.REACT_APP_USER_THREE_PASSWORD
+      [process.env.REACT_APP_USER_TWO_USERNAME]: process.env.REACT_APP_USER_TWO_PASSWORD
     };
 
     if (users[username] && users[username] === password) {
