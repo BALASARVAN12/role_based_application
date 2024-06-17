@@ -4,6 +4,7 @@ import { Container, Form, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 
+
 const LoginPage = ({ setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +28,8 @@ const LoginPage = ({ setUser }) => {
   const handleLogin = () => {
     const users = {
       [process.env.REACT_APP_USER_ONE_USERNAME]: process.env.REACT_APP_USER_ONE_PASSWORD,
-      [process.env.REACT_APP_USER_TWO_USERNAME]: process.env.REACT_APP_USER_TWO_PASSWORD
+      [process.env.REACT_APP_USER_TWO_USERNAME]: process.env.REACT_APP_USER_TWO_PASSWORD,
+      [process.env.REACT_APP_USER_THREE_USERNAME]:process.env.REACT_APP_USER_THREE_PASSWORD
     };
 
     if (users[username] && users[username] === password) {
